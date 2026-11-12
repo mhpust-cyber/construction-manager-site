@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import math
+from drafter import *
 
 set_website_title("construction-manager-site")
 set_site_information(
@@ -10,7 +11,7 @@ set_site_information(
     links=["https://github.com/mhpust-cyber/construction-manager-site/blob/main/CS1-0.pdf", "https://github.com/mhpust-cyber/construction-manager-site/blob/main/CS1-1.pdf"],
 )
 hide_debug_information()
-set_website_framed(False)from drafter import *
+set_website_framed(False)
 
 # ---------------------------------
 # DATA CLASSES
