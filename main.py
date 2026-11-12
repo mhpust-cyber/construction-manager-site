@@ -550,7 +550,9 @@ def materials(state: State) -> Page:
     if len(state.materials) == 0:
         content.append("No materials have been added yet.")
 
-     for material_number in range(len(state.materials)):
+    # Loop by position (index) so each Remove button knows which material
+    # in the list it should delete.
+    for material_number in range(len(state.materials)):
         material = state.materials[material_number]
         total_cost = material.amount * material.price
 
@@ -569,6 +571,12 @@ def materials(state: State) -> Page:
             )
         )
         content.append(HorizontalRule())
+
+    content.append(Button("Home", "home"))
+
+    return Page(state, content)
+
+
 @route
 def add_material(state: State) -> Page:
     project_options = []
