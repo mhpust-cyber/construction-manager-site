@@ -1,7 +1,16 @@
-from drafter import *
 from dataclasses import dataclass
 import math
 
+set_website_title("construction-manager-site")
+set_site_information(
+    author="Mason Pust",
+    description="Manage construction projects.",
+    sources="Thanks to the Drafter docs and my study group.",
+    planning="plan.pdf",
+    links=["https://github.com/your-username/your-repository"]
+)
+hide_debug_information()
+set_website_framed(False)from drafter import *
 
 # ---------------------------------
 # DATA CLASSES
