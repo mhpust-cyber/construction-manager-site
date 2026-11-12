@@ -550,7 +550,8 @@ def materials(state: State) -> Page:
     if len(state.materials) == 0:
         content.append("No materials have been added yet.")
 
-    for material in state.materials:
+     for material_number in range(len(state.materials)):
+        material = state.materials[material_number]
         total_cost = material.amount * material.price
 
         content.append(Header(material.name, 2))
@@ -560,13 +561,14 @@ def materials(state: State) -> Page:
         )
         content.append("Price Per Unit: " + format_money(material.price))
         content.append("Total Cost: " + format_money(total_cost))
+        content.append(
+            Button(
+                "Remove Material",
+                "remove_material",
+                [Argument("material_number", material_number)]
+            )
+        )
         content.append(HorizontalRule())
-
-    content.append(Button("Home", "home"))
-
-    return Page(state, content)
-
-
 @route
 def add_material(state: State) -> Page:
     project_options = []
@@ -662,7 +664,17 @@ def save_material(
 
     return materials(state)
 
+@route
+def remove_material(state: State, material_number: int) -> Page:
+    # Make sure the position is valid before deleting anything.
+    if material_number < 0 or material_number >= len(state.materials):
+        state.message = "That material could not be found."
+        return materials(state)
 
+    removed = state.materials.pop(material_number)
+    state.message = removed.name + " was removed."
+
+    return materials(state)
 # ---------------------------------
 # BUDGET SUMMARY
 # ---------------------------------
