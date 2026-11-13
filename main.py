@@ -7,8 +7,9 @@ set_site_information(
     author="Mason Pust",
     description="Manage construction projects.",
     sources="Thanks to the Drafter docs and my study group.",
-    planning=["CS1-0.pdf", "CS1-1.pdf"],
-    links=["https://github.com/mhpust-cyber/construction-manager-site/blob/main/CS1-0.pdf", "https://github.com/mhpust-cyber/construction-manager-site/blob/main/CS1-1.pdf"],
+    planning=["CS1-0.pdf", "CS1-1.pdf", "CLAUDECONVO.pdf", "CHATCONVO.pdf"],
+    links=["https://github.com/mhpust-cyber/construction-manager-site/blob/main/CS1-0.pdf", "https://github.com/mhpust-cyber/construction-manager-site/blob/main/CS1-1.pdf"
+          , "https://github.com/mhpust-cyber/construction-manager-site/blob/main/CLAUDECONVO.pdf", "https://github.com/mhpust-cyber/construction-manager-site/blob/main/CHATCONVO.pdf"],
 )
 hide_debug_information()
 set_website_framed(False)
