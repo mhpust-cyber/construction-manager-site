@@ -14,6 +14,14 @@ set_site_information(
 hide_debug_information()
 set_website_framed(False)
 
+add_website_css("body", "background-color: #e6e6e6; color: #2b2b2b; font-family: 'Trebuchet MS', Arial, sans-serif; max-width: 850px; margin: 0 auto; padding: 20px;")
+add_website_css("h1", "background-color: #2b2b2b; color: #FFC20E; padding: 15px; text-transform: uppercase; letter-spacing: 2px; border-bottom: 10px solid; border-image: repeating-linear-gradient(45deg, #FFC20E, #FFC20E 10px, #2b2b2b 10px, #2b2b2b 20px) 10;")
+add_website_css("h2", "border-left: 8px solid #FFC20E; padding-left: 10px;")
+add_website_css("button, input[type=submit]", "background-color: #FFC20E; color: #2b2b2b; border: 2px solid #2b2b2b; font-weight: bold; text-transform: uppercase; padding: 8px 14px; margin: 4px; cursor: pointer;")
+add_website_css("button:hover, input[type=submit]:hover", "background-color: #2b2b2b; color: #FFC20E;")
+add_website_css("input, textarea, select", "border: 2px solid #2b2b2b; padding: 6px; margin: 4px 0;")
+add_website_css("hr", "border: 0; border-top: 3px dashed #999999;")
+
 # ---------------------------------
 # DATA CLASSES
 # ---------------------------------
@@ -270,7 +278,25 @@ def projects(state: State) -> Page:
             )
         )
 
-        content.append(HorizontalRule())
+        content.append(HorizontalRule    for project in state.projects:
+        progress = calculate_progress(state, project.name)
+
+        # Div groups several components into one styled box (a "card").
+        content.append(Div(
+            Header(project.name, 2),
+            "Location: " + project.location,
+            "Budget: " + format_money(project.budget),
+            "Completion: " + str(round(progress, 1)) + "%",
+            Button(
+                "View Project Details",
+                "project_details",
+                [Argument("project_name", project.name)]
+            ),
+            style_background_color="white",
+            style_border_left="8px solid #FFC20E",
+            style_padding="12px",
+            style_margin_bottom="15px"
+        ))())
 
     content.append(Button("Home", "home"))
 
@@ -710,7 +736,11 @@ def budget_summary(state: State) -> Page:
         content.append("Remaining Budget: " + format_money(remaining_budget))
 
         if remaining_budget < 0:
-            content.append("Warning: This project is over budget!")
+            content.append(Div(
+                "WARNING: This project is over budget!",
+                style_color="#c0392b",
+                style_font_weight="bold"
+            ))
         else:
             content.append("This project is within its material budget.")
 
