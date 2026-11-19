@@ -116,7 +116,7 @@ MATERIAL_UNITS = [
 # HELPER FUNCTIONS
 # ---------------------------------
 
-def parse_number(text: str) -> float | None:
+def parse_number(text: str) -> "float | None":
     """Convert text typed by the user into a number, or return None.
 
     ADVANCED TECHNIQUES USED HERE:
@@ -167,9 +167,8 @@ def take_message(state: State) -> str:
     return message
 
 
-def find_project(state: State, project_name: str) -> Project | None:
+def find_project(state: State, project_name: str) -> "Project | None":    
     """Return the Project with the given name, or None if it does not exist.
-
     ADVANCED TECHNIQUE: "Project | None" in the return type hint means
     the function returns either a Project or None.
     """
