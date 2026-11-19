@@ -250,17 +250,6 @@ def home(state: State) -> Page:
 # PROJECT ROUTES
 # ---------------------------------
 
-@route
-def projects(state: State) -> Page:
-    content = [
-        Header("Construction Projects"),
-        take_message(state),
-        Button("Add a Project", "add_project"),
-        HorizontalRule()
-    ]
-
-    if len(state.projects) == 0:
-        content.append("No projects have been added yet.")
 
 @route
 def projects(state: State) -> Page:
