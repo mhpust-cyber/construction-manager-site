@@ -262,23 +262,19 @@ def projects(state: State) -> Page:
     if len(state.projects) == 0:
         content.append("No projects have been added yet.")
 
+@route
+def projects(state: State) -> Page:
+    content = [
+        Header("Construction Projects"),
+        take_message(state),
+        Button("Add a Project", "add_project"),
+        HorizontalRule()
+    ]
+
+    if len(state.projects) == 0:
+        content.append("No projects have been added yet.")
+
     for project in state.projects:
-        progress = calculate_progress(state, project.name)
-
-        content.append(Header(project.name, 2))
-        content.append("Location: " + project.location)
-        content.append("Budget: " + format_money(project.budget))
-        content.append("Completion: " + str(round(progress, 1)) + "%")
-
-        content.append(
-            Button(
-                "View Project Details",
-                "project_details",
-                [Argument("project_name", project.name)]
-            )
-        )
-
-        content.append(HorizontalRule    for project in state.projects:
         progress = calculate_progress(state, project.name)
 
         # Div groups several components into one styled box (a "card").
@@ -296,7 +292,7 @@ def projects(state: State) -> Page:
             style_border_left="8px solid #FFC20E",
             style_padding="12px",
             style_margin_bottom="15px"
-        ))())
+        ))
 
     content.append(Button("Home", "home"))
 
